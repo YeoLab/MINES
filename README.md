@@ -13,3 +13,10 @@ tombo resquiggle /fast5_dir/ REF.fa --overwrite --processes #
 tombo detect_modifications de_novo --fast5-basedirs /fast5_dir/ --statistics-file-basename Stats_Filename
 
 tombo text_output browser_files --fast5-basedirs /fast5_dir/ --statistics-filename Stats_Filename.tombo.stats --browser-file-basename output_filename --file-types coverage fraction
+
+MINES dependencies:
+python                    3.7.0
+pandas                    0.23.4
+pybedtools                0.8.0
+numpy*                     1.16.4
+scikit-learn              0.19.2
