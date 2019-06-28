@@ -31,7 +31,7 @@ f_modified_plus=args.f_modified_plus
 f_modified_minus=args.f_modified_minus
 output=args.output
 
-model_list = pd.read_csv('/mnt/c/Users/yeolab/Documents/m6A_paper_final_model_and_data/Models/names.txt', header=None, names=['file'])
+model_list = pd.read_csv('./Final_Models/names.txt', header=None, names=['file'])
 
 # Search for DRACH motifs in data
 ##Positive strand
@@ -272,7 +272,7 @@ for kmer in drach_seqs:
     kmer_df=df_final[df_final['kmer']==kmer]
     kmer_df=kmer_df.drop(columns=['kmer'])
     fname=model_list.loc[kmer,'file']
-    loaded_model = joblib.load('/mnt/c/Users/yeolab/Documents/m6A_paper_final_model_and_data/Models/'+fname)
+    loaded_model = joblib.load('./Final_Models/'+fname)
     p=loaded_model.predict(kmer_df)
     kmer_df['pred']=p
     kmer_df['key']=kmer_df.index
