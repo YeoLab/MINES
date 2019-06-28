@@ -31,3 +31,24 @@ python cDNA_MINES.py --fraction_modified output_filename.fraction_modified_reads
 
 genomic_MINES commands:
 python genomic_MINES.py --fraction_modified_plus output_filename.fraction_modified_reads.plus.wig.bed --coverage_plus output_filename.coverage.plus.bedgraph --coverage_minus output_filename.coverage.minus.bedgraph --fraction_modified_minus output_filename.fraction_modified_reads.minus.wig.bed --output m6A_output_filename.bed --ref REF.fa
+
+
+
+
+Output file format(bed):
+chr, start, stop, 5-mer, unique key, strand, fraction modified^, coverage
+^fraction modified is the value at the identified m6A site. However, the value at this position should be used with caution as the "A" site was found to be a poor predictor of methylation.
+
+
+
+
+
+
+
+
+
+
+
+Reference files can be downloaded from:
+hg19:http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/ File:hg19.fa.gz then run gunzip.
+cDNA:ftp://ftp.ensembl.org/pub/release-91/fasta/homo_sapiens/cdna/  File:Homo_sapiens.GRCh38.cdna.all.fa.gz then run gunzip.
