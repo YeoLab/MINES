@@ -137,7 +137,7 @@ df_final = df_final.dropna()
 df_final['kmer']=list(map(lambda x:x.split(':')[2], df_final.index))
 
 #Load models
-model_list = pd.read_csv('/mnt/c/Users/yeolab/Documents/m6A_paper_final_model_and_data/Models/names.txt', header=None, names=['file'])
+model_list = pd.read_csv('./Final_Models/names.txt', header=None, names=['file'])
 model_list['kmer']=list(map(lambda x:x.split('_')[0], model_list.file))
 model_list.set_index('kmer',inplace=True)
 
@@ -147,7 +147,7 @@ for kmer in drach_seqs:
     kmer_df=df_final[df_final['kmer']==kmer]
     kmer_df=kmer_df.drop(columns=['kmer'])
     fname=model_list.loc[kmer,'file']
-    loaded_model = joblib.load('/mnt/c/Users/yeolab/Documents/m6A_paper_final_model_and_data/Models/'+fname)
+    loaded_model = joblib.load('./Final_Models/'+fname)
     p=loaded_model.predict(kmer_df)
     kmer_df['pred']=p
     kmer_df['key']=kmer_df.index
