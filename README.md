@@ -35,8 +35,8 @@ python genomic_MINES.py --fraction_modified_plus output_filename.fraction_modifi
 
 
 
-### Output file format(bed):
-chr   start   stop    5-mer   unique key    strand    fraction modified^    coverage  
+### Output file format(bed/tab delimited):
+chr,   start,   stop,    5-mer,   unique key,    strand,    fraction modified^,    coverage  
 ^fraction modified is the value at the identified m6A site. However, the value at this position should be used with caution as the "A" site was found to be a poor predictor of methylation.
 
 
