@@ -29,6 +29,14 @@ output=args.output
 # Search for DRACH motifs in data
 drach_seqs=['AGACT','GGACA','GGACC','GGACT']
 tmp=pybedtools.BedTool(coverage)
+tmp=tmp.to_dataframe(header=None, names=['chr','start','stop','coverage','5','strand'])
+tmp=tmp[tmp['coverage']>4]
+tmp['5']=0
+tmp['strand']='+'
+
+tmp['start']=tmp['start'].astype(int)
+tmp['stop']=tmp['stop'].astype(int)
+tmp=pybedtools.BedTool.from_dataframe(tmp)
 tmp=tmp.merge()
 seqs=tmp.sequence(fi=ref, s=True)
 ref=None
