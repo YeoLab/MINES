@@ -20,11 +20,14 @@ pandas                    0.23.4
 pybedtools                0.8.0
 numpy*                     1.16.4
 scikit-learn              0.19.2
+bedops                     2.4.35
 
+Convert the wig files into a bed files.
+wig2bed < output_filename.fraction_modified_reads.plus.wig > output_filename.fraction_modified_reads.plus.wig.bed
 
 
 cDNA_MINES commands:
-python cDNA_MINES.py --fraction_modified output_filename.fraction_modified_reads.plus.wig --coverage output_filename.coverage.plus.bedgraph --output m6A_output_filename.bed --ref REF.fa
+python cDNA_MINES.py --fraction_modified output_filename.fraction_modified_reads.plus.wig.bed --coverage output_filename.coverage.plus.bedgraph --output m6A_output_filename.bed --ref REF.fa
 
 genomic_MINES commands:
-python genomic_MINES.py --fraction_modified_plus output_filename.fraction_modified_reads.plus.wig --coverage_plus output_filename.coverage.plus.bedgraph --coverage_minus output_filename.coverage.minus.bedgraph --fraction_modified_minus output_filename.fraction_modified_reads.minus.wig --output m6A_output_filename.bed --ref REF.fa
+python genomic_MINES.py --fraction_modified_plus output_filename.fraction_modified_reads.plus.wig.bed --coverage_plus output_filename.coverage.plus.bedgraph --coverage_minus output_filename.coverage.minus.bedgraph --fraction_modified_minus output_filename.fraction_modified_reads.minus.wig.bed --output m6A_output_filename.bed --ref REF.fa
