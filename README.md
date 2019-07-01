@@ -6,9 +6,8 @@
 ## Tombo(v1.4) Commands Prior to MINES:
 
 (Only required if fast5s do not already contain fastqs)
-"""
+
 tombo preprocess annotate_raw_with_fastqs --fast5-basedir /fast5_dir/ --fastq-filenames Fastqs --overwrite --processes #
-"""
 
 tombo resquiggle /fast5_dir/ REF.fa --overwrite --processes #
 
