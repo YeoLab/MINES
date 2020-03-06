@@ -5,6 +5,7 @@ from sklearn.externals import joblib
 import pybedtools
 import numpy as np
 
+
 def __is_valid_file(arg):
     if not os.path.isfile(arg):
         parser.error('The file {} does not exist!'.format(arg))
@@ -18,6 +19,7 @@ parser.add_argument('--ref',dest='ref', type=__is_valid_file,required=True, help
 parser.add_argument('--coverage',dest='coverage', type=__is_valid_file, required=True, help='Tombo Text_Output Coverage File(*plus.bedgraph)')
 parser.add_argument('--fraction_modified',dest='fraction_modified', type=__is_valid_file, required=True, help='Tombo Text_Output Fraction_Modified File (*plus.wig)')
 parser.add_argument('--output',dest='output', required=True, help='Output Filename')
+parser.add_argument('--kmer_models',dest='kmer_models', required=True, help='File containing random forest models to use')
 
 args = parser.parse_args()
 
@@ -137,17 +139,18 @@ df_final = df_final.dropna()
 df_final['kmer']=list(map(lambda x:x.split(':')[2], df_final.index))
 
 #Load models
-model_list = pd.read_csv('./Final_Models/names.txt', header=None, names=['file'])
+#model_list = pd.read_csv('./Final_Models/names.txt', header=None, names=['file'])
+model_list = pd.read_csv(args.kmer_models, header=None, names=['file'])
 model_list['kmer']=list(map(lambda x:x.split('_')[0], model_list.file))
 model_list.set_index('kmer',inplace=True)
 
 #Model predictions
 preds=pd.DataFrame()
-for kmer in drach_seqs:
+for kmer in set(df_final['kmer']):
     kmer_df=df_final[df_final['kmer']==kmer]
     kmer_df=kmer_df.drop(columns=['kmer'])
     fname=model_list.loc[kmer,'file']
-    loaded_model = joblib.load('./Final_Models/'+fname)
+    loaded_model = joblib.load(os.path.dirname(args.kmer_models)+'/'+fname)
     p=loaded_model.predict(kmer_df)
     kmer_df['pred']=p
     kmer_df['key']=kmer_df.index
